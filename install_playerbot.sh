@@ -46,20 +46,22 @@ mkdir -p "$INSTALL_DIR/logs/GM"
 
 # Run client data setup
 echo "==> Setting up client data (maps, vmaps, mmaps, dbc)..."
-ACORE_SCRIPT="$SCRIPT_DIR/acore.sh"
-if [[ -f "$ACORE_SCRIPT" ]]; then
-  "$ACORE_SCRIPT" client-data
+cd "$INSTALL_DIR"
 
-  # Move extracted data to install folder
-  DATA_SRC="$SCRIPT_DIR/env/dist/bin/data"
-  DATA_DEST="$INSTALL_DIR/data"
-  if [[ -d "$DATA_SRC" ]]; then
-    mkdir -p "$DATA_DEST"
-    echo "==> Moving client data to $DATA_DEST..."
-    mv "$DATA_SRC"/* "$DATA_DEST/"
-  else
-    echo "WARNING: Client data not found at $DATA_SRC. Check acore.sh output."
-  fi
+if [[ -f "./acore.sh" ]]; then
+  ./acore.sh client-data
+
+  # Move extracted data to proper folders
+  mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
+  
+  mv env/dist/bin/data/maps/* "$INSTALL_DIR/data/maps/" 2>/dev/null || true
+  mv env/dist/bin/data/vmaps/* "$INSTALL_DIR/data/vmaps/" 2>/dev/null || true
+  mv env/dist/bin/data/mmaps/* "$INSTALL_DIR/data/mmaps/" 2>/dev/null || true
+  mv env/dist/bin/data/dbc/* "$INSTALL_DIR/data/dbc/" 2>/dev/null || true
+
+else
+  echo "WARNING: acore.sh not found. Skipping client data step."
+fi
 
   # Generate maps, vmaps, mmaps
   echo "==> Generating maps, vmaps, mmaps..."
