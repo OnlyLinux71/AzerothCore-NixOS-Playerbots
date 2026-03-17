@@ -25,18 +25,19 @@ mod-reforging
 - Build tools pre-configured for NixOS
 - Modules and scripts up-to-date with the Playerbot fork
 
+ ## Clone the repository:
+```bash
+git clone git@github.com:OnlyLinux71/AzerothCore-NixOS-Playerbots.git
+cd ~/AzerothCore-NixOS-Playerbots
+
+``` 
+
 ## Requirements
 
 ## Run on **NixOS** with the following packages:
 
 ```bash
 nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang
-
-```
-## Clone the repository:
-```bash
-git clone git@github.com:OnlyLinux71/AzerothCore-NixOS-Playerbots.git
-cd ~/AzerothCore-NixOS-Playerbots
 
 ```
 
