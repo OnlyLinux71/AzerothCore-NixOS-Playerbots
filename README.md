@@ -44,9 +44,17 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 
 ## Installation / Build
 ## From the repository root:
+## 1. Make the script executable:
+```bash
+chmod +x install_playerbot.sh
+
+```
+# 2. Run this command
 ```bash
 ./install_playerbot.sh
+
 ```
+
 ## By default, the server and tools will be installed in:
 
 ~/Desktop/azerothcore-wotlk
