@@ -1,26 +1,76 @@
 #!/usr/bin/env bash
-set -e  # exit if any command fails
+# AzerothCore NixOS Playerbots - One-shot install/update script
 
-# One-shot build/install script for AzerothCore Playerbot branch on NixOS
+set -e
 
-# Set install path
 INSTALL_DIR="$HOME/Desktop/azerothcore-wotlk"
+REBUILD=0
 
-echo "==> Removing old build folder (if exists)..."
-rm -rf build
-mkdir build
+# Check for --clean flag
+for arg in "$@"; do
+  if [[ "$arg" == "--clean" ]]; then
+    REBUILD=1
+  fi
+done
+
+# Go to repo root
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+echo "==> Updating repository..."
+git fetch origin Playerbot
+git checkout Playerbot
+git reset --hard origin/Playerbot
+
+# Build inside nix-shell
+echo "==> Entering nix-shell and building..."
+nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang --run "
+
+if [[ $REBUILD -eq 1 || ! -d build ]]; then
+  echo '==> Fresh build...'
+  rm -rf build
+  mkdir build
+else
+  echo '==> Incremental build...'
+fi
+
 cd build
 
-echo "==> Configuring CMake..."
-cmake .. -G Ninja \
-  -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
-  -DTOOLS_BUILD=all
+cmake .. -G Ninja -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DTOOLS_BUILD=all
 
-echo "==> Building with Ninja..."
-ninja -j$(nproc)
+echo '==> Compiling...'
+ninja -j\$(nproc)
 
-echo "==> Installing..."
+echo '==> Installing...'
 ninja install
+"
 
-echo "==> Build and install complete!"
-echo "Server installed to: $INSTALL_DIR"
+# Ensure logs folder exists
+echo "==> Creating logs folder..."
+mkdir -p "$INSTALL_DIR/logs/GM"
+
+# Run client data setup
+echo "==> Setting up client data (maps, vmaps, mmaps, dbc)..."
+cd "$INSTALL_DIR"
+
+if [[ -f "./acore.sh" ]]; then
+  ./acore.sh client-data
+else
+  echo "WARNING: acore.sh not found. Skipping client data step."
+fi
+
+echo ""
+echo "======================================="
+echo "✅ DONE!"
+echo "Server installed at: $INSTALL_DIR"
+echo "Logs folder: $INSTALL_DIR/logs"
+echo ""
+echo "👉 Configure in authserver.conf & worldserver.conf:"
+echo "LogsDir = $INSTALL_DIR/logs"
+echo ""
+echo "To update later:"
+echo "  ./install_playerbot.sh"
+echo ""
+echo "To force full rebuild:"
+echo "  ./install_playerbot.sh --clean"
+echo "======================================="
