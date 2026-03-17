@@ -5,7 +5,7 @@ This repository provides a ready-to-build AzerothCore WotLK server with Playerbo
 ## Features
 
 ## Playerbots
-## modules included:
+### modules included:
 - mod-ah-bot
 - mod-aoe-loot
 - mod-arac
@@ -16,12 +16,12 @@ This repository provides a ready-to-build AzerothCore WotLK server with Playerbo
 - mod-item-level-up
 - mod-learn-spells
 - mod-money-for-kills
-- mod-npc-beastmaaster
+- mod-npc-beastmaster
 - mod-npc-buffer
 - mod-npc-enchanter
 - mod-playerbots
 - mod-reforging
-## Other features included: 
+### Other features included: 
 - One-shot `install_playerbot.sh` script
 - Build tools pre-configured for NixOS
 - Modules and scripts up-to-date!!! 
