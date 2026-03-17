@@ -51,7 +51,7 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 
 ~/Desktop/azerothcore-wotlk
 
-## Change the path inside install_playerbot.sh if you want a custom location.
+Change the path inside install_playerbot.sh if you want a custom location.
 
 ## To stay updated with this repository:
 ```bash
