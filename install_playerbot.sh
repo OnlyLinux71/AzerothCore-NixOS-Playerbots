@@ -52,13 +52,14 @@ if [[ -f "$REPO_ROOT/acore.sh" ]]; then
   # Run acore.sh from repo root
   "$REPO_ROOT/acore.sh" client-data
 
-  # Move extracted data to proper folders
-  mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
+# Move extracted data to proper folders
+mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
 
-  mv "$REPO_ROOT/env/dist/bin/data/maps/"* "$INSTALL_DIR/data/maps/" 2>/dev/null || true
-  mv "$REPO_ROOT/env/dist/bin/data/vmaps/"* "$INSTALL_DIR/data/vmaps/" 2>/dev/null || true
-  mv "$REPO_ROOT/env/dist/bin/data/mmaps/"* "$INSTALL_DIR/data/mmaps/" 2>/dev/null || true
-  mv "$REPO_ROOT/env/dist/bin/data/dbc/"* "$INSTALL_DIR/data/dbc/" 2>/dev/null || true
+# Only move if source exists
+[[ -d "$REPO_ROOT/env/dist/bin/data/maps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/maps/." "$INSTALL_DIR/data/maps/"
+[[ -d "$REPO_ROOT/env/dist/bin/data/vmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/vmaps/." "$INSTALL_DIR/data/vmaps/"
+[[ -d "$REPO_ROOT/env/dist/bin/data/mmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/mmaps/." "$INSTALL_DIR/data/mmaps/"
+[[ -d "$REPO_ROOT/env/dist/bin/data/dbc" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/dbc/." "$INSTALL_DIR/data/dbc/"
 
   # Generate maps, vmaps, mmaps
   echo "==> Generating maps, vmaps, mmaps..."
