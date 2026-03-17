@@ -54,13 +54,12 @@ if [[ -f "$REPO_ROOT/acore.sh" ]]; then
     "$REPO_ROOT/acore.sh" client-data
 
     # Prepare target folders
-    mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
+mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
 
-    # Copy extracted data into install folder (works even if nix-shell paths are read-only)
-    [[ -d "$REPO_ROOT/env/dist/bin/data/maps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/maps/." "$INSTALL_DIR/data/maps/"
-    [[ -d "$REPO_ROOT/env/dist/bin/data/vmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/vmaps/." "$INSTALL_DIR/data/vmaps/"
-    [[ -d "$REPO_ROOT/env/dist/bin/data/mmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/mmaps/." "$INSTALL_DIR/data/mmaps/"
-    [[ -d "$REPO_ROOT/env/dist/bin/data/dbc" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/dbc/." "$INSTALL_DIR/data/dbc/"
+cp -r "$REPO_ROOT/env/dist/bin/maps/." "$INSTALL_DIR/data/maps/"
+cp -r "$REPO_ROOT/env/dist/bin/vmaps/." "$INSTALL_DIR/data/vmaps/"
+cp -r "$REPO_ROOT/env/dist/bin/mmaps/." "$INSTALL_DIR/data/mmaps/"
+cp -r "$REPO_ROOT/env/dist/bin/dbc/." "$INSTALL_DIR/data/dbc/"
 
     # Generate maps/vmaps/mmaps
     echo "==> Generating maps, vmaps, mmaps..."
