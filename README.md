@@ -43,7 +43,6 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 ```
 
 ## Installation / Build
-## From the repository root:
 ## 1. Make the script executable:
 ```bash
 chmod +x install_playerbot.sh
