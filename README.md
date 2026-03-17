@@ -53,7 +53,6 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 
 ## Change the path inside install_playerbot.sh if you want a custom location.
 
-## Keeping Updated
 ## To stay updated with this repository:
 ```bash
 git pull
