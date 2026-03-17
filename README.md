@@ -4,7 +4,7 @@ This repository provides a ready-to-build AzerothCore WotLK server with Playerbo
 
 ## Features
 
-## - Playerbots
+## Playerbots
 ## modules included:
 - mod-ah-bot
 - mod-aoe-loot
