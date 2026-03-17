@@ -1,0 +1,86 @@
+-- MySQL dump 10.13  Distrib 8.4.3, for Win64 (x86_64)
+--
+-- Host: localhost    Database: acore_characters
+-- ------------------------------------------------------
+-- Server version	8.4.3
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `pool_quest_save`
+--
+
+DROP TABLE IF EXISTS `pool_quest_save`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pool_quest_save` (
+  `pool_id` int unsigned NOT NULL DEFAULT '0',
+  `quest_id` int unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`pool_id`,`quest_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pool_quest_save`
+--
+
+LOCK TABLES `pool_quest_save` WRITE;
+/*!40000 ALTER TABLE `pool_quest_save` DISABLE KEYS */;
+INSERT INTO `pool_quest_save` VALUES
+(348,24636),
+(349,14101),
+(350,13903),
+(351,13917),
+(352,11379),
+(353,11669),
+(354,13424),
+(356,11375),
+(357,11500),
+(358,14080),
+(359,14076),
+(360,14144),
+(361,14092),
+(362,12703),
+(363,14108),
+(380,12735),
+(381,12734),
+(382,12762),
+(384,13192),
+(385,13154),
+(386,12587),
+(5662,13674),
+(5663,13763),
+(5664,13768),
+(5665,13775),
+(5666,13778),
+(5667,13784),
+(5668,13669),
+(5669,13603),
+(5670,13741),
+(5671,13747),
+(5672,13759),
+(5673,13754),
+(5674,13101),
+(5675,13114),
+(5676,13834),
+(5677,12963),
+(5678,24588);
+/*!40000 ALTER TABLE `pool_quest_save` ENABLE KEYS */;
+UNLOCK TABLES;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-12-29 17:55:13
