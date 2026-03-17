@@ -27,26 +27,26 @@ mod-reforging
 
 ## Requirements
 
-Run on **NixOS** with the following packages:
+## Run on **NixOS** with the following packages:
 
 ```bash
 nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang
 
 ```
 
-Installation / Build
-From the repository root:
+## Installation / Build
+## From the repository root:
 ```bash
 ./install_playerbot.sh
 ```
-By default, the server and tools will be installed in:
+## By default, the server and tools will be installed in:
 
 ~/Desktop/azerothcore-wotlk
 
-Change the path inside install_playerbot.sh if you want a custom location.
+## Change the path inside install_playerbot.sh if you want a custom location.
 
-Keeping Updated
-To stay updated with this repository:
+## Keeping Updated
+## To stay updated with this repository:
 ```bash
 git pull
 
