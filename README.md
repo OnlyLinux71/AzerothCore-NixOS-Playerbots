@@ -26,7 +26,9 @@ This repository provides a ready-to-build AzerothCore WotLK server with Playerbo
 
 - One-shot `install_playerbot.sh` script
 - Build tools pre-configured for NixOS
-- Modules and scripts up-to-date with the Playerbot fork
+- Modules and scripts up-to-date!!! 
+
+```
 
  ## Clone the repository:
 ```bash
