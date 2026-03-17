@@ -59,4 +59,4 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 git pull
 
 ```
-Any questions feel free to reach out to me at email: tracey@onlylinux.org
+# Any questions feel free to reach out to me at email: tracey@onlylinux.org
