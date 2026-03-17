@@ -61,20 +61,19 @@ chmod +x install_playerbot.sh
 
 Change the path inside install_playerbot.sh if you want a custom location.
 
-Log directory setup – tell users to point the server to the created logs folder:
+## Log directory setup – tell users to point the server to the created logs folder:
 
 # Logs Folder
 ## The script automatically creates a logs folder for both the worldserver and authserver:
 
-~/Desktop/azerothcore-wotlk/logs
-├─ GM
+~/Desktop/azerothcore-wotlk/logs/GM
 
 ## Make sure your config files point to this folder:
 
-- In authserver.conf:
+## In authserver.conf:
     LogsDir = /home/<YOUR_USERNAME>/Desktop/azerothcore-wotlk/logs
 
-- In worldserver.conf:
+## In worldserver.conf:
     LogsDir = /home/<YOUR_USERNAME>/Desktop/azerothcore-wotlk/logs
 
 ## To stay updated with this repository:
