@@ -46,21 +46,23 @@ mkdir -p "$INSTALL_DIR/logs/GM"
 
 # Run client data setup
 echo "==> Setting up client data (maps, vmaps, mmaps, dbc)..."
-cd "$INSTALL_DIR"
 
-if [[ -f "./acore.sh" ]]; then
-  ./acore.sh client-data
+REPO_ROOT="$SCRIPT_DIR"
+
+if [[ -f "$REPO_ROOT/acore.sh" ]]; then
+  # Run acore.sh from repo root
+  "$REPO_ROOT/acore.sh" client-data
 
   # Move extracted data to proper folders
   mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
   
-  mv env/dist/bin/data/maps/* "$INSTALL_DIR/data/maps/" 2>/dev/null || true
-  mv env/dist/bin/data/vmaps/* "$INSTALL_DIR/data/vmaps/" 2>/dev/null || true
-  mv env/dist/bin/data/mmaps/* "$INSTALL_DIR/data/mmaps/" 2>/dev/null || true
-  mv env/dist/bin/data/dbc/* "$INSTALL_DIR/data/dbc/" 2>/dev/null || true
+  mv "$REPO_ROOT/env/dist/bin/data/maps/"* "$INSTALL_DIR/data/maps/" 2>/dev/null || true
+  mv "$REPO_ROOT/env/dist/bin/data/vmaps/"* "$INSTALL_DIR/data/vmaps/" 2>/dev/null || true
+  mv "$REPO_ROOT/env/dist/bin/data/mmaps/"* "$INSTALL_DIR/data/mmaps/" 2>/dev/null || true
+  mv "$REPO_ROOT/env/dist/bin/data/dbc/"* "$INSTALL_DIR/data/dbc/" 2>/dev/null || true
 
 else
-  echo "WARNING: acore.sh not found. Skipping client data step."
+  echo "WARNING: acore.sh not found in repository root. Skipping client data step."
 fi
 
   # Generate maps, vmaps, mmaps
