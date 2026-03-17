@@ -24,7 +24,7 @@ git reset --hard origin/Playerbot
 # Build inside nix-shell
 echo "==> Entering nix-shell and building..."
 nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang --run "
-if [[ \$REBUILD -eq 1 || ! -d build ]]; then
+if [[ $REBUILD -eq 1 || ! -d build ]]; then
   echo '==> Fresh build...'
   rm -rf build
   mkdir build
@@ -46,31 +46,32 @@ mkdir -p "$INSTALL_DIR/logs/GM"
 
 # Run client data setup
 echo "==> Setting up client data (maps, vmaps, mmaps, dbc)..."
+
 REPO_ROOT="$SCRIPT_DIR"
 
 if [[ -f "$REPO_ROOT/acore.sh" ]]; then
-  # Run acore.sh from repo root
-  "$REPO_ROOT/acore.sh" client-data
+    # Download/extract client data
+    "$REPO_ROOT/acore.sh" client-data
 
-# Move extracted data to proper folders
-mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
+    # Prepare target folders
+    mkdir -p "$INSTALL_DIR/data/maps" "$INSTALL_DIR/data/vmaps" "$INSTALL_DIR/data/mmaps" "$INSTALL_DIR/data/dbc"
 
-# Only move if source exists
-[[ -d "$REPO_ROOT/env/dist/bin/data/maps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/maps/." "$INSTALL_DIR/data/maps/"
-[[ -d "$REPO_ROOT/env/dist/bin/data/vmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/vmaps/." "$INSTALL_DIR/data/vmaps/"
-[[ -d "$REPO_ROOT/env/dist/bin/data/mmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/mmaps/." "$INSTALL_DIR/data/mmaps/"
-[[ -d "$REPO_ROOT/env/dist/bin/data/dbc" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/dbc/." "$INSTALL_DIR/data/dbc/"
+    # Copy extracted data into install folder (works even if nix-shell paths are read-only)
+    [[ -d "$REPO_ROOT/env/dist/bin/data/maps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/maps/." "$INSTALL_DIR/data/maps/"
+    [[ -d "$REPO_ROOT/env/dist/bin/data/vmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/vmaps/." "$INSTALL_DIR/data/vmaps/"
+    [[ -d "$REPO_ROOT/env/dist/bin/data/mmaps" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/mmaps/." "$INSTALL_DIR/data/mmaps/"
+    [[ -d "$REPO_ROOT/env/dist/bin/data/dbc" ]] && cp -r "$REPO_ROOT/env/dist/bin/data/dbc/." "$INSTALL_DIR/data/dbc/"
 
-  # Generate maps, vmaps, mmaps
-  echo "==> Generating maps, vmaps, mmaps..."
-  cd "$INSTALL_DIR"
-  [[ -f "$INSTALL_DIR/tools/map_extractor/map_extractor" ]] && ./tools/map_extractor/map_extractor
-  [[ -f "$INSTALL_DIR/tools/vmap4_extractor/vmap4_extractor" ]] && ./tools/vmap4_extractor/vmap4_extractor Buildings vmaps
-  [[ -f "$INSTALL_DIR/tools/vmap4_assembler/vmap4_assembler" ]] && ./tools/vmap4_assembler/vmap4_assembler
-  [[ -f "$INSTALL_DIR/tools/mmaps_generator/mmaps_generator" ]] && ./tools/mmaps_generator/mmaps_generator
+    # Generate maps/vmaps/mmaps
+    echo "==> Generating maps, vmaps, mmaps..."
+    cd "$INSTALL_DIR"
 
+    [[ -f "$INSTALL_DIR/tools/map_extractor/map_extractor" ]] && ./tools/map_extractor/map_extractor
+    [[ -f "$INSTALL_DIR/tools/vmap4_extractor/vmap4_extractor" ]] && ./tools/vmap4_extractor/vmap4_extractor Buildings vmaps
+    [[ -f "$INSTALL_DIR/tools/vmap4_assembler/vmap4_assembler" ]] && ./tools/vmap4_assembler/vmap4_assembler
+    [[ -f "$INSTALL_DIR/tools/mmaps_generator/mmaps_generator" ]] && ./tools/mmaps_generator/mmaps_generator
 else
-  echo "WARNING: acore.sh not found in repository root. Skipping client data step."
+    echo "WARNING: acore.sh not found in repo root. Skipping client data step."
 fi
 
 echo ""
