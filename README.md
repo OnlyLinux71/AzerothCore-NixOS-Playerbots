@@ -33,6 +33,12 @@ mod-reforging
 nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang
 
 ```
+## Clone the repository:
+```bash
+git clone git@github.com:OnlyLinux71/AzerothCore-NixOS-Playerbots.git
+cd ~/AzerothCore-NixOS-Playerbots
+
+```
 
 ## Installation / Build
 ## From the repository root:
