@@ -49,7 +49,7 @@ nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readlin
 chmod +x install_playerbot.sh
 
 ```
-# 2. Run this command
+## 2. Run this command
 ```bash
 ./install_playerbot.sh
 
