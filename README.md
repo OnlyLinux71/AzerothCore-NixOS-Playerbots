@@ -38,7 +38,7 @@ cd ~/AzerothCore-NixOS-Playerbots
 ## Run on **NixOS** with the following packages:
 
 ```bash
-nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mysql pkg-config readline clang
+nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mysql80 pkg-config readline clang
 
 ```
 
