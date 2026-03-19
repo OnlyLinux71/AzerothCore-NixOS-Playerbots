@@ -23,7 +23,7 @@ git reset --hard origin/Playerbot
 
 # Build inside nix-shell
 echo "==> Entering nix-shell and building..."
-nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mariadb pkg-config readline clang --run "
+nix-shell -p cmake ninja gcc openssl boost zlib bzip2 mysql80 pkg-config readline clang --run "
 if [[ $REBUILD -eq 1 || ! -d build ]]; then
   echo '==> Fresh build...'
   rm -rf build
