@@ -1,3 +1,5 @@
+the below still works!!! I am in the process of switching player bot branches to trickeries over this for better and easier bot controls!!! Willl update when it is solid enough!!!
+
 # AzerothCore NixOS Playerbots
 
 This repository provides a ready-to-build AzerothCore WotLK server with Playerbots and several modules, pre-configured for **NixOS**. Includes a one-shot install/update script to make building easy for other users.
